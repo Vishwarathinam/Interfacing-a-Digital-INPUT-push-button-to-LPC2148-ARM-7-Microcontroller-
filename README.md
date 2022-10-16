@@ -1,6 +1,6 @@
-# Interfacing-a-Digital-INPUT-push-button-to-LPC2148-ARM-7-Microcontroller-
-Name :
-Roll no 
+### Interfacing-a-Digital-INPUT-push-button-to-LPC2148-ARM-7-Microcontroller-
+Name :Vishwa Rathinam s
+Roll no :212221240063
 Date of experiment :
 
 Ex. No. : 3
@@ -115,13 +115,47 @@ Figure -11 Hex file for simulation
 Step 9: Select the hex file from the Kiel program folder and import the program in to the microcontroller as shown in figure 11 ,  debug and if no errors in connections are found, run the VSM simulation to view the output.
 
 
-### Kiel - Program  
+### Kiel - Program:
+~~~
+### Developed by: Vishwa Rathinam. S
+### Reg.No: 212221240063
 
+#include <LPC214x.h>   // define LPC2148 Header file
+#define led (1<<2)     // led macro for pin 2 of port0
+#define sw (1<<10)     // sw macro for pin 10 of port0
+int main(void)
+{
+	unsigned int x;
+	IO0DIR|=(~sw);   // configure P1.24 - P1.31 as input
+	IO0DIR|=led;     // configure P1.16 - P1.23 as output
+	while(1)
+	{
+		x = IOPIN0 & sw;   //save status of sw in variable x
+		if(x==sw)          // if switch open
+		{
+			IOCLR0|=led; // LED off
+		}
+		else               // if switch close
+		{
+			IOSET0 = led;  // LED on
+		}
+	}
+}
+~~~
+### Output screen shots :
+### LED OFF:
+![img](s1.png)
+
+### LED ON:
+![img](s2.png)
+
+### CIRCUIT DIAGRAM:
+![img](s3.png)
 
 ### Result :
 Interfacing a digital output with ARM microcontroller is executed 
 
-### Output screen shots :
+
 
 
 
